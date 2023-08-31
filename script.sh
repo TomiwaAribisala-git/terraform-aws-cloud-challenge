@@ -5,7 +5,6 @@ sudo yum install docker -y
 sudo yum install git -y 
 sudo systemctl start docker
 sudo usermod -aG docker ec2-user
-
 git clone [repo]
 cd nodejs-webapp
 cd app
