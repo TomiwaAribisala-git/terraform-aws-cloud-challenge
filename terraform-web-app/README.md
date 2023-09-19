@@ -1,6 +1,8 @@
+## This repository is a solution of the [Terraform Cloud Resume Challenge](https://github.com/cloudresumechallenge/projects/blob/main/projects/aws/terraform.md)
+
 ## Terraform configuration for creating an AWS EC2 Instance runnning a basic web application in Docker, supported by a Elastic Load Balancer and Auto Scaling Group.
 
-### Go to Remote Backend directory
+### Go to the Remote Backend directory
 ```
 cd s3_remote_backend
 ```
@@ -21,9 +23,9 @@ terraform plan
 terraform apply
 ```
 
-### Go to Main Project directory 
+### Go to Terraform Web App directory 
 ```
-cd .. 
+cd terraform-web-app 
 ```
 
 ```
