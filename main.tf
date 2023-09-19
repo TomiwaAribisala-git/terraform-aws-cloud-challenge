@@ -1,48 +1,78 @@
 terraform {
   backend "s3" {
-    bucket = "terraform-web-app-bucket"
+    bucket = "terraform_state_bucket"
     key    = "terraform.tfstate"
     region = "eu-north-1"
+    encrypt = true
+    dynamodb_table = "terraform_state_bucket_lock"
   }
 }
 
-resource "aws_vpc" "practice-vpc" {
+resource "aws_vpc" "main" {
+    name = var.vpc_name
     cidr_block = var.vpc_cidr_block
-    tags = {
-        Name = "practice-vpc"
-    }
 }
 
-resource "aws_subnet" "practice-subnet-1" { 
-    vpc_id = aws_vpc.practice-vpc.id
-    cidr_block = var.subnet_cidr_block
-    availability_zone = var.avail_zone
-    tags = {
-        Name = "practice-subnet-1"
-    }
+resource "aws_subnet" "public_subnet" { 
+    name = var.public_subnet_name
+    vpc_id = aws_vpc.main.id
+    cidr_block = var.public_subnet_cidr_block
+    availability_zone = var.public_subnet_avail_zone
 }
 
-resource "aws_internet_gateway" "practice-gw" {
-    vpc_id = aws_vpc.practice-vpc.id
-    tags = {
-        Name = "practice-gw"
-  }
+resource "aws_internet_gateway" "internet-gw" {
+    vpc_id = aws_vpc.main.id
 }
 
-resource "aws_route_table" "practice-route-table" {
-    vpc_id = aws_vpc.practice-vpc.id
+resource "aws_route_table" "public_rt" {
+    vpc_id = aws_vpc.main.id
     route {
         cidr_block = "0.0.0.0/0"
-        gateway_id = aws_internet_gateway.practice-gw.id 
-    }
-    tags = {
-        Name = "practice-route-table"
+        gateway_id = aws_internet_gateway.internet-gw.id 
     }
 }
 
-resource "aws_route_table_association" "practice-subnet-route_table_association" {
-    subnet_id = aws_subnet.practice-subnet-1.id 
-    route_table_id = aws_route_table.practice-route-table.id 
+resource "aws_route_table_association" "public-subnet-route_table_association" {
+    subnet_id = aws_subnet.public_subnet.id 
+    route_table_id = aws_route_table.public_rt.id 
+}
+
+resource "aws_subnet" "private_subnet" { 
+    name = var.private_subnet1_name
+    vpc_id = aws_vpc.main.id
+    cidr_block = var.private_subnet1_cidr_block
+    availability_zone = var.private_subnet1_avail_zone
+}
+
+resource "aws_subnet" "private_subnet" { 
+    name = var.private_subnet2_name
+    vpc_id = aws_vpc.main.id
+    cidr_block = var.private_subnet2_cidr_block
+    availability_zone = var.private_subnet2_avail_zone
+}
+
+resource "aws_eip" "nat_eip" {
+  vpc = true
+}
+
+resource "aws_nat_gateway" "nat_gw" {
+  allocation_id = aws_eip.nat_eip.id
+  subnet_id     = aws_subnet.private_subnet.id
+  depends_on = [aws_internet_gateway.internet-gw]
+}
+
+resource "aws_route_table" "private_rt" {
+  vpc_id = aws_vpc.main.id
+
+route {
+  cidr_block = "0.0.0.0/0"
+  nat_gateway_id = aws_nat_gateway.nat_gw.id
+}
+}
+
+resource "aws_route_table_association" "private_subnet_route_table_association" {
+subnet_id = aws_subnet.private_subnet.id
+route_table_id = aws_route_table.private_rt.id
 }
 
 resource "aws_security_group" "elb-sg" {
