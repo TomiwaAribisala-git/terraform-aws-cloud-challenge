@@ -1,8 +1,12 @@
-## Terraform configuration for creating an S3 Bucket used as a remote backend for Terraform State Files. 
+## Terraform configuration for creating an S3 Bucket as a remote backend for terraform cloud challenge state file, the state file for the S3 Bucket is stored in Terraform Cloud.
 
-## Terraform Commands
+### Terraform Commands
 ```
-terraform init 
+terraform login
+```
+
+```
+terraform init
 ```
 
 ```
@@ -15,8 +19,4 @@ terraform plan
 
 ```
 terraform apply
-```
-
-```
-terraform destory
 ```

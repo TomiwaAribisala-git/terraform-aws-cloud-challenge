@@ -1,16 +1,65 @@
-variable vpc_name {}
-variable vpc_cidr_block {}
+variable alb-name {
+    description = "name of the application load balancer"
+    type = string
+}
 
-variable public_subnet_name {}
-variable public_subnet_cidr_block {}
-variable public_subnet_avail_zone {}
+variable node-ls-port {
+    description = "load balancer listener port"
+    type = number
+}
 
-variable private_subnet1_name {}
-variable private_subnet1_cidr_block {}
-variable private_subnet1_avail_zone {}
+variable node-tg-name {
+    description = "name of load balancer target group"
+    type = string
+}
 
-variable private_subnet2_name {}
-variable private_subnet2_cidr_block {}
-variable private_subnet2_avail_zone {}
+variable node-tg-port {
+    description = "load balancer target group port"
+    type = number
+}
 
-variable ssh_private_key {}
+variable subnet1_id {
+    description = "ID of the public_subnet1"
+    type = string
+}
+variable subnet2_id {
+    description = "ID of the public_subnet2"
+    type = string
+}
+
+variable avail_zone1 {
+    description = "availability zone of private_subnet1"
+    type = string
+}
+variable private-subnet1-cidr-block {
+    description = "CIDR block of private_subnet1"
+    type = string
+}
+
+variable avail_zone2 {
+    description = "availability zone of private_subnet1"
+    type = string
+}
+variable private-subnet2-cidr-block {
+    description = "CIDR block of private_subnet2"
+    type = string
+}
+
+variable private-subnet1-route-table-cidr-block {
+    description = "CIDR block of private_subnet1 route_table to NAT Gateway"
+    type = string
+}
+variable private-subnet2-route-table-cidr-block {
+    description = "CIDR block of private_subnet2 route_table to NAT Gateway"
+    type = string
+}
+
+variable asg-name {
+    description = "name of autoscaling group"
+    type = string
+}
+
+variable instance_type {
+    description = "ec2 instance type"
+    type = string
+}
