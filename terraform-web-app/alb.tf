@@ -21,6 +21,7 @@ resource "aws_lb_listener" "node-listener" {
 }
 
 resource "aws_lb_target_group" "node-lb-tg" {
+  target_type = "instance"
   name        = var.node-tg-name
   port        = var.node-tg-port
   protocol    = "HTTP"

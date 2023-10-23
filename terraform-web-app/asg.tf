@@ -9,6 +9,15 @@ resource "aws_autoscaling_group" "node-app-asg" {
   vpc_zone_identifier  = [aws_subnet.private_subnet1.id, aws_subnet.private_subnet2.id]
 }
 
+resource "aws_autoscaling_traffic_source_attachment" "node-app-asg-attachment" {
+  autoscaling_group_name = aws_autoscaling_group.node-app-asg.id
+
+  traffic_source {
+    identifier = aws_lb_target_group.node-lb-tg.arn
+    type       = "elbv2"
+  }
+}
+
 resource "aws_autoscaling_attachment" "node-asg-attachment" {
   autoscaling_group_name = aws_autoscaling_group.node-app-asg.id
   lb_target_group_arn    = aws_lb_target_group.node-lb-tg.arn
@@ -38,6 +47,7 @@ resource "aws_autoscaling_notification" "node-app-asg-notifications" {
     "autoscaling:EC2_INSTANCE_LAUNCH",
     "autoscaling:EC2_INSTANCE_TERMINATE",
     "autoscaling:EC2_INSTANCE_LAUNCH_ERROR",
+    "autoscaling:EC2_INSTANCE_TERMINATE_ERROR",
   ]
   topic_arn = aws_sns_topic.autoscaling_sns_topic.arn
 }

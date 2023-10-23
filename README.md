@@ -44,7 +44,7 @@ terraform plan
 terraform apply
 ```
 ### Load Balancer Endpoint
-- node-alb-391270936.eu-north-1.elb.amazonaws.com
+- node-alb-1253122593.eu-north-1.elb.amazonaws.com
 
 ### Initiate a Scaling Event by increasing the CPU Load of the EC2 Instance using AWS Session Manager
 - Go to the AWS Systems Manager via the AWS Console
