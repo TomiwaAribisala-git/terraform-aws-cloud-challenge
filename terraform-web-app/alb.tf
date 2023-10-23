@@ -24,6 +24,5 @@ resource "aws_lb_target_group" "node-lb-tg" {
   name        = var.node-tg-name
   port        = var.node-tg-port
   protocol    = "HTTP"
-  target_type = "ip"
   vpc_id      = data.aws_vpc.default.id
 }

@@ -7,9 +7,6 @@ resource "aws_autoscaling_group" "node-app-asg" {
   force_delete         = true
   launch_configuration = aws_launch_configuration.node-app.name
   vpc_zone_identifier  = [aws_subnet.private_subnet1.id, aws_subnet.private_subnet2.id]
-  lifecycle { 
-    ignore_changes = [desired_capacity, target_group_arns]
-  }
 }
 
 resource "aws_autoscaling_attachment" "node-asg-attachment" {

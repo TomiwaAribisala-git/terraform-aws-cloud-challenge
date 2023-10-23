@@ -9,5 +9,5 @@ sudo yum install docker -y
 sudo systemctl enable docker
 sudo systemctl start docker
 sudo usermod -aG docker ec2-user
-echo tomiwa97 | sudo docker login -u dckr_pat_Oj0GFrJbkW9P672jNvOhIMasKOM --password-stdin
-sudo docker run -d -p 3000:3000 tomiwa97/node-project:latest
+echo tomiwa97 | docker login -u dckr_pat_Oj0GFrJbkW9P672jNvOhIMasKOM --password-stdin
+docker run -d -p 3000:3000 tomiwa97/node-project:latest
