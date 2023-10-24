@@ -10,9 +10,11 @@ terraform {
 
 resource "aws_s3_bucket" "terraform-cloud-challenge-state" {
   bucket = var.bucket_name
+  /*
   lifecycle {
     prevent_destroy = true
   }
+  */
 }
 
 resource "aws_s3_bucket_versioning" "enabled" {
