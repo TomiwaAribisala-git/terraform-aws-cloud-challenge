@@ -23,9 +23,9 @@ terraform plan
 terraform apply
 ```
 
-### Go to Terraform Cloud Challenge directory 
+### Go to Root Directory 
 ```
-cd terraform-cloud-challenge 
+cd .. 
 ```
 
 ```
@@ -106,3 +106,4 @@ sudo killall stress
 
 ### Extras
 - [Terraform Documentation on Managing AWS Auto Scaling Groups](https://developer.hashicorp.com/terraform/tutorials/aws/aws-asg).
+- [Terraform Standard Module Structure](https://developer.hashicorp.com/terraform/language/modules/develop/structure).

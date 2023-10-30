@@ -21,7 +21,7 @@ resource "aws_launch_configuration" "node-app" {
   name_prefix     = "node-app-"
   image_id        = data.aws_ami.latest-amazon-ami-image.id
   instance_type   = var.instance_type
-  user_data       = "${file("ec2-user-data.sh")}"
+  user_data       = "${path.module}/ec2-user-data.sh"
   security_groups = [aws_security_group.server-sg.id]
   iam_instance_profile = aws_iam_instance_profile.instance-iam-profile.name
   lifecycle {

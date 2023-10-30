@@ -4,4 +4,4 @@
 *.tfstate.*
 
 *.tfvars
-*.sh
+./modules/terraform-web-app/*.sh
