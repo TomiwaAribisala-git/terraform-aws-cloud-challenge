@@ -51,17 +51,17 @@ terraform apply
 
 ### Initiate a Scaling Event by increasing the CPU Load of the EC2 Instance using AWS Session Manager
 - Go to the AWS Systems Manager via the AWS Console
-![./terraform-web-app/images/Systems_Manager.png](./terraform-web-app/images/Systems_Manager.png)
+![./terraform-web-app/images/Systems_Manager.png](./images/Systems_Manager.png)
 
 
 
 - Navigate to the Fleet Manager, the Fleet Manager indicates the SSM Agent is online for the EC2 Instance which indicates the SSM Agent is ready.
-![./terraform-web-app/images/Fleet_Manager.png](./terraform-web-app/images/Fleet_Manager.png)
+![./terraform-web-app/images/Fleet_Manager.png](./images/Fleet_Manager.png)
 
 
 
 - Navigate to Session Manager
-![./terraform-web-app/images/Session_Manager.png](./terraform-web-app/images/Session_Manager.png)
+![./terraform-web-app/images/Session_Manager.png](./images/Session_Manager.png)
 
 
 
@@ -83,12 +83,12 @@ sudo stress --cpu 8 --timeout 800 &
 
 
 
-![./terraform-web-app/images/Session_Manager_EC2.png](./terraform-web-app/images/Session_Manager_EC2.png)
+![./terraform-web-app/images/Session_Manager_EC2.png](./images/Session_Manager_EC2.png)
 
 
 
 - Autoscale EC2 Instances for scale up event
-![./terraform-web-app/images/ASG_EC2_Instances](./terraform-web-app/images/ASG_EC2_Instances.png)
+![./terraform-web-app/images/ASG_EC2_Instances](./images/ASG_EC2_Instances.png)
 
 
 
@@ -100,7 +100,7 @@ sudo killall stress
 
 
 - Terminated EC2 Instances for scale down event
-![./terraform-web-app/images/Terminated_EC2_Instances](./terraform-web-app/images/Terminated_EC2_Instances.png)
+![./terraform-web-app/images/Terminated_EC2_Instances](./images/Terminated_EC2_Instances.png)
 
 
 
