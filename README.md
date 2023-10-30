@@ -87,9 +87,8 @@ sudo stress --cpu 8 --timeout 800 &
 
 
 
-- Autoscale EC2 Instances alert on my device for scale up event
+- Autoscale EC2 Instances for scale up event
 ![./terraform-web-app/images/ASG_EC2_Instances](./terraform-web-app/images/ASG_EC2_Instances.png)
-![picture]
 
 
 
@@ -100,9 +99,8 @@ sudo killall stress
 
 
 
-- Terminated EC2 Instances alert on my device for scale down event
+- Terminated EC2 Instances for scale down event
 ![./terraform-web-app/images/Terminated_EC2_Instances](./terraform-web-app/images/Terminated_EC2_Instances.png)
-![picture]
 
 
 
