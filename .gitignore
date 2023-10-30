@@ -2,6 +2,4 @@
 
 *.tfstate
 *.tfstate.*
-
 *.tfvars
-./modules/terraform-web-app/ec2-user-data.sh
